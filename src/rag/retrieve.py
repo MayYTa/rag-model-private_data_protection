@@ -8,9 +8,7 @@ from pathlib import Path
 
 import snowballstemmer
 
-STOP = set(
-    ["a", "al", "ante", "como", "con", "cual", "cuales", "cuando", "de", "del", "desde", "donde", "e", "el", "ella", "en", "entre", "es", "esta", "este", "hay", "la", "las", "le", "les", "lo", "los", "me", "mi", "mis", "no", "o", "para", "por", "puede", "que", "se", "si", "sin", "sobre", "son", "su", "sus", "tiene", "un", "una", "uno", "unos", "y", "ya"]
-)
+STOP = {"a", "al", "ante", "como", "con", "cual", "cuales", "cuando", "de", "del", "desde", "donde", "e", "el", "ella", "en", "entre", "es", "esta", "este", "hay", "la", "las", "le", "les", "lo", "los", "me", "mi", "mis", "no", "o", "para", "por", "puede", "que", "se", "si", "sin", "sobre", "son", "su", "sus", "tiene", "un", "una", "uno", "unos", "y", "ya"}
 
 
 STEMMER = snowballstemmer.stemmer("spanish")

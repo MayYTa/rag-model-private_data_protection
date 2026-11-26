@@ -1,8 +1,9 @@
-"""Mide la recuperación en dev. Uso: python -m rag.evaluate [--stem]"""
+"""Mide la recuperación en dev. Uso: python -m rag.evaluate [--method bm25|dense|hybrid] [--stem]"""
+import argparse
 import json
-import sys
 from pathlib import Path
 
+from rag.dense import Dense, Hybrid
 from rag.retrieve import BM25, load_corpus
 
 
@@ -15,8 +16,17 @@ def first_hit(results: list[dict], gold: dict) -> int | None:
     return None
 
 
-def main(split: str = "dev", stem: bool = False) -> None:
-    index = BM25(load_corpus(), stem=stem)
+def build(method: str, stem: bool):
+    rows = load_corpus()
+    if method == "bm25":
+        return BM25(rows, stem=stem)
+    if method == "dense":
+        return Dense(rows)
+    return Hybrid(rows, [BM25(rows, stem=stem), Dense(rows)])
+
+
+def main(method: str = "bm25", stem: bool = False, split: str = "dev") -> None:
+    index = build(method, stem)
     lines = Path("eval/eval_set.jsonl").read_text(encoding="utf-8").splitlines()
     questions = [q for q in map(json.loads, lines) if q["split"] == split and q["articulos"]]
     ranks = []
@@ -33,4 +43,8 @@ def main(split: str = "dev", stem: bool = False) -> None:
 
 
 if __name__ == "__main__":
-    main(stem="--stem" in sys.argv)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--method", choices=["bm25", "dense", "hybrid"], default="bm25")
+    parser.add_argument("--stem", action="store_true")
+    args = parser.parse_args()
+    main(args.method, args.stem)
