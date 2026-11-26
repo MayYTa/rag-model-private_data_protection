@@ -1,0 +1,21 @@
+id,veredicto,comentario
+pdp-001,correcta,omite que los días son hábiles
+pdp-003,incorrecta,dice 20 días; son 8 (69.1)
+pdp-005,correcta,omite que solo se notifica en los supuestos del 34.1
+pdp-007,correcta,
+pdp-009,correcta,
+pdp-011,correcta,
+pdp-013,correcta,
+pdp-015,abstencion_falsa,el art. 40.1 dice que es facultativa
+pdp-017,correcta,abstención correcta
+pdp-019,correcta,
+pdp-021,correcta,deja ver 'fuente [1]' en el texto
+pdp-023,correcta,
+pdp-025,correcta,
+pdp-027,correcta,
+pdp-029,correcta,
+pdp-031,incorrecta,dice 48 horas; es inmediato (36)
+pdp-033,correcta,
+pdp-035,correcta,omite comunicar el pago (127.3)
+pdp-037,correcta,
+pdp-039,correcta,

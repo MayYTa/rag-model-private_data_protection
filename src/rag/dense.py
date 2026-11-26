@@ -13,7 +13,7 @@ def chunks(text: str, size: int = 220, overlap: int = 40) -> list[str]:
 def load_model():
     from sentence_transformers import SentenceTransformer
 
-    return SentenceTransformer(MODEL)  # usa la GPU si está disponible
+    return SentenceTransformer(MODEL, device="cpu")  # la GPU queda para Ollama
 
 
 class Dense:
